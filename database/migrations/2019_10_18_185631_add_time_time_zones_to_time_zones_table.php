@@ -176,8 +176,6 @@ class AddTimeTimeZonesToTimeZonesTable extends Migration
      */
     public function down()
     {
-        Schema::table('time_zones', function (Blueprint $table) {
-            //
-        });
+        Db::table('time_zones')->truncate();
     }
 }
