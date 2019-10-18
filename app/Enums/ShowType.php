@@ -12,6 +12,5 @@ use BenSampo\Enum\Enum;
 final class ShowType extends Enum
 {
     const Episodic =   0;
-    const EpisodicSeason =   1;
-    const Serial = 2;
+    const Serial = 1;
 }
