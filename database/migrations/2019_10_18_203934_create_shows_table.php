@@ -18,8 +18,8 @@ class CreateShowsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
-            $table->string('short_description')->nullable();
+            $table->text('description');
+            $table->text('short_description')->nullable();
             $table->tinyInteger('show_type')->default(ShowType::Episodic);
             $table->boolean('explicit_content')->default(false);
             $table->string('tags')->nullable();
