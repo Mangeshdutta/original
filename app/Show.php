@@ -5,6 +5,7 @@ namespace App;
 use App\Enums\ShowType;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Show extends Model
 {
@@ -26,4 +27,10 @@ class Show extends Model
     protected $enumCasts = [
         'show_type' => ShowType::class,
     ];
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class)
+                    ->withTimestamps();
+    }
 }
