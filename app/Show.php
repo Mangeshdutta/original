@@ -40,4 +40,9 @@ class Show extends Model
     {
         return $this->belongsTo(Language::class);
     }
+
+    public function timeZone(): BelongsTo
+    {
+        return $this->belongsTo(TimeZone::class);
+    }
 }
