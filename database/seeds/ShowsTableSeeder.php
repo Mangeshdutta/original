@@ -2,6 +2,7 @@
 
 use App\Show;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 
 class ShowsTableSeeder extends Seeder
 {
@@ -14,7 +15,10 @@ class ShowsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create('tr_TR');
 
-        factory(Show::class, $faker->numberBetween(15, 25))->state('with-nullables')->create();
-        factory(Show::class, $faker->numberBetween(15, 25))->create();
+        Collection::times(50, function() use ($faker){
+            $faker->boolean
+                ? factory(Show::class)->state('with-nullables')->create()
+                : factory(Show::class)->create();
+        });
     }
 }

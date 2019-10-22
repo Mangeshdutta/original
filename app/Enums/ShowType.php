@@ -6,7 +6,6 @@ use BenSampo\Enum\Enum;
 
 /**
  * @method static static Episodic()
- * @method static static EpisodicSeason()
  * @method static static Serial()
  */
 final class ShowType extends Enum
