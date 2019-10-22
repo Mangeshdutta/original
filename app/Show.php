@@ -5,6 +5,8 @@ namespace App;
 use App\Enums\ShowType;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Show extends Model
@@ -32,5 +34,10 @@ class Show extends Model
     {
         return $this->belongsToMany(Category::class)
                     ->withTimestamps();
+    }
+
+    public function language(): BelongsTo
+    {
+        return $this->belongsTo(Language::class);
     }
 }
