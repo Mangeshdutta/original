@@ -4,6 +4,7 @@
 
 use App\Show;
 use App\Model;
+use App\Episode;
 use App\Language;
 use App\TimeZone;
 use App\Category;
@@ -32,6 +33,10 @@ $factory
         $show->categories()->saveMany(Category::all()->random($faker->numberBetween(1, 3)));
     });
 
+$factory->state(Show::class, 'without-nullables', function (Faker $faker) {
+    return [];
+});
+
 $factory->state(Show::class, 'with-nullables', function (Faker $faker) {
     return [
         'short_description' => $faker->paragraphs($faker->numberBetween(1, 2), true),
@@ -44,3 +49,26 @@ $factory->state(Show::class, 'with-nullables', function (Faker $faker) {
         'artwork'           => $faker->imageUrl(300, 300, null, true, null, true),
     ];
 });
+
+$factory
+    ->state(Show::class, 'with-episodes', function () {
+        return [];
+    })
+    ->afterCreatingState(Show::class, 'with-episodes', function ($show, Faker $faker) {
+        factory(Episode::class, $faker->numberBetween(2, 10))
+            ->create([
+                'show_id' => $show->id,
+            ]);
+    });
+
+$factory
+    ->state(Show::class, 'with-episodes-with-nullables', function () {
+        return [];
+    })
+    ->afterCreatingState(Show::class, 'with-episodes-with-nullables', function ($show, Faker $faker) {
+        factory(Episode::class, $faker->numberBetween(2, 10))
+            ->state('with-nullables')
+            ->create([
+                'show_id' => $show->id,
+            ]);
+    });
