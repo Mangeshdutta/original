@@ -17,7 +17,7 @@ class ShowsTableSeeder extends Seeder
 
         Collection::times(50, function() use ($faker){
             $faker->boolean
-                ? factory(Show::class)->state('with-nullables')->create()
+                ? factory(Show::class)->states('with-nullables', 'with-social-media-accounts')->create()
                 : factory(Show::class)->create();
         });
     }
