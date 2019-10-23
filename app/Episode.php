@@ -5,6 +5,7 @@ namespace App;
 use App\Enums\EpisodeType;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Episode extends Model
 {
@@ -24,4 +25,9 @@ class Episode extends Model
     protected $enumCasts = [
         'episode_type' => EpisodeType::class,
     ];
+
+    public function show(): BelongsTo
+    {
+        return $this->belongsTo(Show::class);
+    }
 }
