@@ -21,7 +21,8 @@ class ShowsTableSeeder extends Seeder
                     $faker->randomElement(['with-nullables', 'without-nullables']),
                     $faker->randomElement(['with-episodes', 'with-episodes-with-nullables']),
                     $faker->randomElement(['with-social-media-accounts', 'without-social-media-accounts']),
-                ]))
+                    $faker->randomElement(['with-listening-services', 'without-listening-services']),
+                ], 4))
                 ->create();
         });
     }

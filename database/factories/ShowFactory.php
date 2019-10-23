@@ -3,7 +3,6 @@
 /** @var Factory $factory */
 
 use App\Show;
-use App\Model;
 use App\Episode;
 use App\Language;
 use App\TimeZone;
@@ -12,6 +11,8 @@ use App\Enums\ShowType;
 use App\SocialMediaAccount;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use App\ListeningService;
+use App\Enums\ListeningServiceType;
 use App\Enums\SocialMediaAccountType;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -86,6 +87,22 @@ $factory->state(Show::class, 'with-social-media-accounts', function (Faker $fake
             'key'     => $socialMediaAccount,
         ]);
     }
+});
+
+$factory->state(Show::class, 'with-listening-services', function (Faker $faker) {
+    return [];
+})->afterCreatingState(Show::class, 'with-listening-services', function ($show, Faker $faker) {
+    $listeningServices = collect(ListeningServiceType::getKeys())->random(3);
+
+    foreach ($listeningServices as $listeningService) {
+        factory(ListeningService::class)->create(['show_id' => $show->id, 'key' => $listeningService,]);
+    }
+});
+
+$factory->state(Show::class, 'without-listening-services', function (Faker $faker) {
+    return [];
+})->afterCreatingState(Show::class, 'without-listening-services', function ($show, Faker $faker) {
+    //
 });
 
 $factory->state(Show::class, 'without-social-media-accounts', function (Faker $faker) {
