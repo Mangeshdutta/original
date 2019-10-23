@@ -2,9 +2,10 @@
 
 /** @var Factory $factory */
 
+use App\Enums\SocialMediaAccountType;
 use App\Show;
-use App\Model;
 use App\Language;
+use App\SocialMediaAccount;
 use App\TimeZone;
 use App\Category;
 use App\Enums\ShowType;
@@ -41,4 +42,17 @@ $factory->state(Show::class, 'with-nullables', function (Faker $faker) {
         'itunes_url'        => 'https://itunes.apple.com/us/podcast/'.implode('-', $faker->words($faker->numberBetween(3, 5), false)).'/id'.$faker->numerify('##########'),
         'spotify_url'       => 'https://open.spotify.com/track/'.$faker->bothify('#?#????#?????##??'),
     ];
+});
+
+$factory->state(Show::class, 'with-social-media-accounts', function (Faker $faker) {
+    return [];
+})->afterCreatingState(Show::class, 'with-social-media-accounts', function ($show, Faker $faker) {
+    $socialMediaAccounts = collect(SocialMediaAccountType::getKeys())->random(3);
+
+    foreach ($socialMediaAccounts as $socialMediaAccount) {
+        factory(SocialMediaAccount::class)->create([
+            'show_id'   => $show->id,
+            'key'       => $socialMediaAccount,
+        ]);
+    }
 });

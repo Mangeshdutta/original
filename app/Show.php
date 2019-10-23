@@ -5,6 +5,7 @@ namespace App;
 use App\Enums\ShowType;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -44,5 +45,10 @@ class Show extends Model
     public function timeZone(): BelongsTo
     {
         return $this->belongsTo(TimeZone::class);
+    }
+
+    public function socialMediaAccounts(): HasMany
+    {
+        return $this->hasMany(SocialMediaAccount::class);
     }
 }
