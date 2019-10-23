@@ -2,10 +2,12 @@
 
 /** @var Factory $factory */
 
+use App\Enums\SocialMediaAccountType;
 use App\Show;
 use App\Model;
 use App\Episode;
 use App\Language;
+use App\SocialMediaAccount;
 use App\TimeZone;
 use App\Category;
 use App\Enums\ShowType;
@@ -72,3 +74,16 @@ $factory
                 'show_id' => $show->id,
             ]);
     });
+
+$factory->state(Show::class, 'with-social-media-accounts', function (Faker $faker) {
+    return [];
+})->afterCreatingState(Show::class, 'with-social-media-accounts', function ($show, Faker $faker) {
+    $socialMediaAccounts = collect(SocialMediaAccountType::getKeys())->random(3);
+
+    foreach ($socialMediaAccounts as $socialMediaAccount) {
+        factory(SocialMediaAccount::class)->create([
+            'show_id'   => $show->id,
+            'key'       => $socialMediaAccount,
+        ]);
+    }
+});
