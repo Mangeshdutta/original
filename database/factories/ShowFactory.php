@@ -37,8 +37,8 @@ $factory->state(Show::class, 'with-nullables', function (Faker $faker) {
         'tags'              => implode(', ', $faker->words($faker->numberBetween(3, 5))),
         'copyright'         => '© 2019 '.$faker->company,
         'website'           => $faker->url,
+        'donation_message'  => $faker->paragraphs($faker->numberBetween(1, 2), true),
+        'donation_link'     => $faker->url,
         'artwork'           => $faker->imageUrl(300, 300, null, true, null, true),
-        'itunes_url'        => 'https://itunes.apple.com/us/podcast/'.implode('-', $faker->words($faker->numberBetween(3, 5), false)).'/id'.$faker->numerify('##########'),
-        'spotify_url'       => 'https://open.spotify.com/track/'.$faker->bothify('#?#????#?????##??'),
     ];
 });

@@ -18,8 +18,8 @@ class Show extends Model
         'short_description', 'show_type',
         'explicit_content', 'tags', 'author',
         'owner', 'owner_email', 'copyright', 'website',
-        'language_id', 'time_zone_id', 'artwork', 'itunes_url',
-        'spotify_url',
+        'language_id', 'time_zone_id', 'donation_message',
+        'donation_link', 'artwork',
     ];
 
     protected $casts = [
