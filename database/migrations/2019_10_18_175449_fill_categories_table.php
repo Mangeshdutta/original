@@ -789,4 +789,14 @@ class FillCategoriesTable extends Migration
 
         DB::table('categories')->insert($categories);
     }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Db::table('categories')->truncate();
+    }
 }

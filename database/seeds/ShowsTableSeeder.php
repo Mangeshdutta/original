@@ -13,12 +13,16 @@ class ShowsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create('tr_TR');
+        $faker = Faker\Factory::create();
 
-        Collection::times(50, function() use ($faker){
-            $faker->boolean
-                ? factory(Show::class)->states('with-nullables', 'with-social-media-accounts')->create()
-                : factory(Show::class)->create();
+        Collection::times(50, function () use ($faker) {
+            factory(Show::class)
+                ->states($faker->randomElements([
+                    $faker->randomElement(['with-nullables', 'without-nullables']),
+                    $faker->randomElement(['with-episodes', 'with-episodes-with-nullables']),
+                    $faker->randomElement(['with-social-media-accounts', 'without-social-media-accounts']),
+                ]))
+                ->create();
         });
     }
 }

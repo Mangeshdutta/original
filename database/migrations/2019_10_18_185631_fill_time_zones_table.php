@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTimeTimeZonesToTimeZonesTable extends Migration
+class FillTimeZonesTable extends Migration
 {
     /**
      * Run the migrations.
