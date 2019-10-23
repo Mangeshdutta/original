@@ -16,13 +16,14 @@ $factory
     ->define(Show::class, function (Faker $faker) {
         return [
             'title'            => $title = ucwords($faker->words($faker->numberBetween(3, 5), true).$faker->lexify('???')),
-            'slug'             => Str::slug($title),
+            'slug'             => $slug = Str::slug($title),
             'description'      => $faker->paragraphs($faker->numberBetween(3, 5), true),
             'show_type'        => ShowType::getRandomValue(),
             'explicit_content' => $faker->boolean,
             'author'           => $faker->firstName.$faker->lastName,
             'owner'            => $owner = $faker->firstName.' '.$faker->lastName,
             'owner_email'      => Str::slug($owner, '.').'@'.$faker->safeEmailDomain,
+            'subdomain'        => $slug,
             'language_id'      => Language::all()->random(1)->first()->id,
             'time_zone_id'     => TimeZone::all()->random(1)->first()->id,
         ];
@@ -39,6 +40,7 @@ $factory->state(Show::class, 'with-nullables', function (Faker $faker) {
         'website'           => $faker->url,
         'donation_message'  => $faker->paragraphs($faker->numberBetween(1, 2), true),
         'donation_link'     => $faker->url,
+        'custom_domain'     => $faker->url,
         'artwork'           => $faker->imageUrl(300, 300, null, true, null, true),
     ];
 });

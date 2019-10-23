@@ -33,6 +33,9 @@ class CreateShowsTable extends Migration
             $table->text('donation_message')->nullable();
             $table->string('donation_link')->nullable();
 
+            $table->string('subdomain');
+            $table->string('custom_domain')->nullable();
+
             $table->unsignedBigInteger('language_id');
             $table->unsignedBigInteger('time_zone_id');
 

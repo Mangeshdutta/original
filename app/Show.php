@@ -19,7 +19,7 @@ class Show extends Model
         'explicit_content', 'tags', 'author',
         'owner', 'owner_email', 'copyright', 'website',
         'language_id', 'time_zone_id', 'donation_message',
-        'donation_link', 'artwork',
+        'donation_link', 'subdomain', 'custom_domain', 'artwork',
     ];
 
     protected $casts = [
