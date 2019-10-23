@@ -18,8 +18,9 @@ class ShowsTableSeeder extends Seeder
         Collection::times(50, function () use ($faker) {
             factory(Show::class)
                 ->states($faker->randomElements([
-                    $faker->randomElement(['with-nullables','without-nullables']),
+                    $faker->randomElement(['with-nullables', 'without-nullables']),
                     $faker->randomElement(['with-episodes', 'with-episodes-with-nullables']),
+                    $faker->randomElement(['with-social-media-accounts', 'without-social-media-accounts']),
                 ]))
                 ->create();
         });

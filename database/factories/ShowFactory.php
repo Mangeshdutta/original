@@ -2,17 +2,17 @@
 
 /** @var Factory $factory */
 
-use App\Enums\SocialMediaAccountType;
 use App\Show;
 use App\Model;
 use App\Episode;
 use App\Language;
-use App\SocialMediaAccount;
 use App\TimeZone;
 use App\Category;
 use App\Enums\ShowType;
+use App\SocialMediaAccount;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use App\Enums\SocialMediaAccountType;
 use Illuminate\Database\Eloquent\Factory;
 
 $factory
@@ -82,8 +82,14 @@ $factory->state(Show::class, 'with-social-media-accounts', function (Faker $fake
 
     foreach ($socialMediaAccounts as $socialMediaAccount) {
         factory(SocialMediaAccount::class)->create([
-            'show_id'   => $show->id,
-            'key'       => $socialMediaAccount,
+            'show_id' => $show->id,
+            'key'     => $socialMediaAccount,
         ]);
     }
+});
+
+$factory->state(Show::class, 'without-social-media-accounts', function (Faker $faker) {
+    return [];
+})->afterCreatingState(Show::class, 'without-social-media-accounts', function ($show, Faker $faker) {
+    //
 });
