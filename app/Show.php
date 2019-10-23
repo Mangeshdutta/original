@@ -6,7 +6,6 @@ use App\Enums\ShowType;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -19,8 +18,8 @@ class Show extends Model
         'short_description', 'show_type',
         'explicit_content', 'tags', 'author',
         'owner', 'owner_email', 'copyright', 'website',
-        'language_id', 'time_zone_id', 'artwork', 'itunes_url',
-        'spotify_url',
+        'language_id', 'time_zone_id', 'donation_message',
+        'donation_link', 'subdomain', 'custom_domain', 'artwork',
     ];
 
     protected $casts = [
@@ -45,6 +44,11 @@ class Show extends Model
     public function timeZone(): BelongsTo
     {
         return $this->belongsTo(TimeZone::class);
+    }
+
+    public function episodes(): HasMany
+    {
+        return $this->hasMany(Episode::class);
     }
 
     public function socialMediaAccounts(): HasMany
