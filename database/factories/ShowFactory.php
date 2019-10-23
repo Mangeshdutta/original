@@ -2,7 +2,9 @@
 
 /** @var Factory $factory */
 
+use App\Enums\ListeningServiceType;
 use App\Enums\SocialMediaAccountType;
+use App\ListeningService;
 use App\Show;
 use App\Language;
 use App\SocialMediaAccount;
@@ -53,6 +55,19 @@ $factory->state(Show::class, 'with-social-media-accounts', function (Faker $fake
         factory(SocialMediaAccount::class)->create([
             'show_id'   => $show->id,
             'key'       => $socialMediaAccount,
+        ]);
+    }
+});
+
+$factory->state(Show::class, 'with-listening-services', function (Faker $faker) {
+    return [];
+})->afterCreatingState(Show::class, 'with-listening-services', function ($show, Faker $faker) {
+    $listeningServices = collect(ListeningServiceType::getKeys())->random(3);
+
+    foreach ($listeningServices as $listeningService) {
+        factory(ListeningService::class)->create([
+            'show_id'   => $show->id,
+            'key'       => $listeningService,
         ]);
     }
 });

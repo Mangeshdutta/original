@@ -5,8 +5,13 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 
 /**
- * @method static static Episodic()
- * @method static static Serial()
+ * @method static static Twitter()
+ * @method static static Instagram()
+ * @method static static Facebook()
+ * @method static static Linkedin()
+ * @method static static Patreon()
+ * @method static static Youtube()
+ * @method static static Medium()
  */
 final class SocialMediaAccountType extends Enum
 {
