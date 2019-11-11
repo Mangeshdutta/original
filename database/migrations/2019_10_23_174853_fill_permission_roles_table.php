@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class FillRolePermissionsTable extends Migration
+class FillPermissionRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class FillRolePermissionsTable extends Migration
      */
     public function up()
     {
-        DB::table('role_permissions')->insert([
+        DB::table('permission_roles')->insert([
             [
                 'role_id' => 1,
                 'permission_id' => 1,
@@ -35,6 +35,6 @@ class FillRolePermissionsTable extends Migration
      */
     public function down()
     {
-        DB::table('role_permissions')->truncate();
+        DB::table('permission_roles')->truncate();
     }
 }
