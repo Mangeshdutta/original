@@ -10,7 +10,7 @@ class UsersTableSeeder extends Seeder
         factory(User::class)->create([
             'name'     => 'admin',
             'password' => bcrypt('admin'),
-            'email'    => 'admin@keklik.io',
+            'email'    => 'admin@original.fm',
         ]);
     }
 }
